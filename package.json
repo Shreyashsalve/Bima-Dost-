@@ -10,7 +10,9 @@
     "preview": "vite preview",
     "clean": "rm -rf dist server.js",
     "lint": "tsc --noEmit",
-    "test": "tsx test/e2e-workflow.test.ts"
+    "test": "tsx test/e2e-workflow.test.ts",
+    "db:migrate": "tsx server/migrate.ts",
+    "db:import-sqlite": "tsx server/seed-or-migrate-sqlite.ts"
   },
   "dependencies": {
     "@google/genai": "^2.4.0",
@@ -27,6 +29,7 @@
     "jsonwebtoken": "^9.0.3",
     "lucide-react": "^0.546.0",
     "motion": "^12.23.24",
+    "pg": "^8.23.1",
     "react": "^19.0.1",
     "react-dom": "^19.0.1",
     "tsx": "^4.21.0",
@@ -37,10 +40,12 @@
     "@types/express": "^4.17.21",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^22.14.0",
+    "@types/pg": "^8.23.1",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "autoprefixer": "^10.4.21",
     "esbuild": "^0.28.0",
+    "pg-mem": "^3.0.14",
     "tailwindcss": "^4.3.3",
     "typescript": "^7.0.2"
   }

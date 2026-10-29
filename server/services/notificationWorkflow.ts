@@ -1,8 +1,8 @@
-import { db } from '../db.js';
-import { sendWhatsAppMessage, isWhatsAppConfigured } from './whatsapp.js';
+import { query, queryOne } from '../db.js';
+import { sendWhatsAppMessage } from './whatsapp.js';
 import { sendEmail } from './email.js';
 
-function saveNotificationLog({
+async function saveNotificationLog({
   appointmentId,
   channel,
   recipient,
@@ -26,45 +26,48 @@ function saveNotificationLog({
   const id = `notif_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
   const now = new Date().toISOString();
 
-  db.prepare(`
-    INSERT INTO notifications (
+  await query(
+    `INSERT INTO notifications (
       id, appointment_id, channel, recipient, workflow,
       subject, message_body, status, service_response, error_details,
       created_at, updated_at
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-  `).run(
-    id,
-    appointmentId,
-    channel,
-    recipient,
-    workflow,
-    subject || null,
-    messageBody,
-    status,
-    serviceResponse ? JSON.stringify(serviceResponse) : null,
-    errorDetails || null,
-    now,
-    now
+    ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`,
+    [
+      id,
+      appointmentId,
+      channel,
+      recipient,
+      workflow,
+      subject || null,
+      messageBody,
+      status,
+      serviceResponse ? JSON.stringify(serviceResponse) : null,
+      errorDetails || null,
+      now,
+      now
+    ]
   );
   return id;
 }
 
 // ================= WORKFLOW A: PAYMENT VERIFIED =================
 export async function executePaymentVerifiedWorkflow(appointmentId: string) {
-  const apt = db.prepare(`
-    SELECT a.*, p.razorpay_payment_id, p.razorpay_order_id, p.method
-    FROM appointments a
-    LEFT JOIN payments p ON a.id = p.appointment_id
-    WHERE a.id = ?
-  `).get(appointmentId) as any;
+  const apt = await queryOne<any>(
+    `SELECT a.*, p.razorpay_payment_id, p.razorpay_order_id, p.method
+     FROM appointments a
+     LEFT JOIN payments p ON a.id = p.appointment_id
+     WHERE a.id = $1`,
+    [appointmentId]
+  );
 
   if (!apt) return { error: 'Appointment not found' };
 
   // Idempotency check: don't send duplicate notifications if already executed
-  const existingNotif = db.prepare(`
-    SELECT id FROM notifications
-    WHERE appointment_id = ? AND workflow = 'payment_verified' AND status IN ('sent', 'skipped')
-  `).get(appointmentId);
+  const existingNotif = await queryOne<any>(
+    `SELECT id FROM notifications
+     WHERE appointment_id = $1 AND workflow = 'payment_verified' AND status IN ('sent', 'skipped')`,
+    [appointmentId]
+  );
 
   if (existingNotif) {
     return { status: 'already_executed', message: 'Payment verified notifications were already sent or queued.' };
@@ -89,7 +92,7 @@ Thank you for choosing Bima Dost! 🤝`;
 
   const waResult = await sendWhatsAppMessage(apt.customer_phone, whatsappText);
   const waStatus = waResult.success ? 'sent' : waResult.skipped ? 'skipped' : 'failed';
-  saveNotificationLog({
+  await saveNotificationLog({
     appointmentId,
     channel: 'whatsapp',
     recipient: apt.customer_phone,
@@ -102,6 +105,7 @@ Thank you for choosing Bima Dost! 🤝`;
 
   // 2. Administrator Notification Email (Workflow A requirement: notify admin that approval is required)
   const adminEmailSubject = `[ACTION REQUIRED] New Insurance Consultation Awaiting Approval - #${apt.docket_number}`;
+  const totalAmountNum = typeof apt.total_amount === 'number' ? apt.total_amount : parseFloat(apt.total_amount || 499);
   const adminEmailHtml = `
 <!DOCTYPE html>
 <html>
@@ -131,7 +135,7 @@ Thank you for choosing Bima Dost! 🤝`;
     </div>
     <div class="content">
       <div class="alert-box">
-        ⚠️ ADMINISTRATOR APPROVAL REQUIRED: Payment of ₹${apt.total_amount.toFixed(2)} has been verified via Razorpay. This appointment is currently PENDING APPROVAL. Please review the customer grievance and assign an advocate.
+        ⚠️ ADMINISTRATOR APPROVAL REQUIRED: Payment of ₹${totalAmountNum.toFixed(2)} has been verified via Razorpay. This appointment is currently PENDING APPROVAL. Please review the customer grievance and assign an advocate.
       </div>
 
       <div class="detail-row">
@@ -160,7 +164,7 @@ Thank you for choosing Bima Dost! 🤝`;
       </div>
       <div class="detail-row">
         <span class="detail-label">Payment Amount:</span>
-        <span class="detail-val">₹${apt.total_amount.toFixed(2)} (Verified)</span>
+        <span class="detail-val">₹${totalAmountNum.toFixed(2)} (Verified)</span>
       </div>
       <div class="detail-row">
         <span class="detail-label">Razorpay Payment ID:</span>
@@ -194,7 +198,7 @@ Thank you for choosing Bima Dost! 🤝`;
     html: adminEmailHtml
   });
 
-  saveNotificationLog({
+  await saveNotificationLog({
     appointmentId,
     channel: 'email',
     recipient: adminEmail,
@@ -206,7 +210,7 @@ Thank you for choosing Bima Dost! 🤝`;
     errorDetails: adminEmailResult.error
   });
 
-  // 3. Customer Payment Receipt & Pending Approval Email (Requirement 6)
+  // 3. Customer Payment Receipt & Pending Approval Email
   const custReceiptSubject = `Payment Received — Consultation Pending Approval (Docket #${apt.docket_number})`;
   const custReceiptHtml = `
 <!DOCTYPE html>
@@ -232,7 +236,7 @@ Thank you for choosing Bima Dost! 🤝`;
     </div>
     <div class="content">
       <p>Namaste <strong>${apt.customer_name}</strong>,</p>
-      <p>Your payment of <strong>₹${apt.total_amount.toFixed(2)}</strong> for an insurance legal consultation has been received successfully.</p>
+      <p>Your payment of <strong>₹${totalAmountNum.toFixed(2)}</strong> for an insurance legal consultation has been received successfully.</p>
 
       <div style="margin: 16px 0;">
         <span class="status-badge">Status: Pending Administrator Approval</span>
@@ -253,7 +257,7 @@ Thank you for choosing Bima Dost! 🤝`;
         </div>
         <div class="detail-row">
           <span>Amount Paid (incl. 18% GST):</span>
-          <strong>₹${apt.total_amount.toFixed(2)}</strong>
+          <strong>₹${totalAmountNum.toFixed(2)}</strong>
         </div>
         <div class="detail-row">
           <span>Razorpay Payment ID:</span>
@@ -283,7 +287,7 @@ Thank you for choosing Bima Dost! 🤝`;
     html: custReceiptHtml
   });
 
-  saveNotificationLog({
+  await saveNotificationLog({
     appointmentId,
     channel: 'email',
     recipient: apt.customer_email,
@@ -297,9 +301,10 @@ Thank you for choosing Bima Dost! 🤝`;
 
   // Update appointment notification status
   const notifSummary = `wa:${waStatus}, email:${adminEmailResult.success ? 'sent' : 'failed'}`;
-  db.prepare(`
-    UPDATE appointments SET notification_status = ?, updated_at = ? WHERE id = ?
-  `).run(notifSummary, new Date().toISOString(), appointmentId);
+  await query(
+    `UPDATE appointments SET notification_status = $1, updated_at = $2 WHERE id = $3`,
+    [notifSummary, new Date().toISOString(), appointmentId]
+  );
 
   return {
     whatsapp: waResult,
@@ -313,14 +318,15 @@ export async function executeAdministratorApprovedWorkflow(
   appointmentId: string,
   meetUrl: string
 ) {
-  const apt = db.prepare('SELECT * FROM appointments WHERE id = ?').get(appointmentId) as any;
+  const apt = await queryOne<any>('SELECT * FROM appointments WHERE id = $1', [appointmentId]);
   if (!apt) return { error: 'Appointment not found' };
 
   // Idempotency check: don't duplicate approval messages
-  const existingApprovalNotif = db.prepare(`
-    SELECT id FROM notifications
-    WHERE appointment_id = ? AND workflow = 'appointment_approved' AND status IN ('sent', 'skipped')
-  `).get(appointmentId);
+  const existingApprovalNotif = await queryOne<any>(
+    `SELECT id FROM notifications
+     WHERE appointment_id = $1 AND workflow = 'appointment_approved' AND status IN ('sent', 'skipped')`,
+    [appointmentId]
+  );
 
   if (existingApprovalNotif) {
     return { status: 'already_executed', message: 'Approval notifications were already sent.' };
@@ -341,7 +347,7 @@ Please join at the scheduled time. We look forward to helping you understand you
 
   const waResult = await sendWhatsAppMessage(apt.customer_phone, customerWhatsAppText);
   const waStatus = waResult.success ? 'sent' : waResult.skipped ? 'skipped' : 'failed';
-  saveNotificationLog({
+  await saveNotificationLog({
     appointmentId,
     channel: 'whatsapp',
     recipient: apt.customer_phone,
@@ -404,7 +410,7 @@ Please join at the scheduled time. We look forward to helping you understand you
     html: customerEmailHtml
   });
 
-  saveNotificationLog({
+  await saveNotificationLog({
     appointmentId,
     channel: 'email',
     recipient: apt.customer_email,
@@ -416,7 +422,7 @@ Please join at the scheduled time. We look forward to helping you understand you
     errorDetails: custEmailResult.error
   });
 
-  // 3. Administrator Confirmation Email (Workflow B requirement #8)
+  // 3. Administrator Confirmation Email
   const adminEmail = process.env.ADMIN_NOTIFICATION_EMAIL || 'shreyashns19@gmail.com';
   const adminConfirmSubject = `[CONFIRMED] Consultation Approved for ${apt.customer_name} - #${apt.docket_number}`;
   const adminConfirmHtml = `
@@ -435,7 +441,7 @@ Please join at the scheduled time. We look forward to helping you understand you
     html: adminConfirmHtml
   });
 
-  saveNotificationLog({
+  await saveNotificationLog({
     appointmentId,
     channel: 'email',
     recipient: adminEmail,
@@ -448,9 +454,10 @@ Please join at the scheduled time. We look forward to helping you understand you
   });
 
   const updatedSummary = `wa:${waStatus}, email:${custEmailResult.success ? 'sent' : 'failed'}`;
-  db.prepare(`
-    UPDATE appointments SET notification_status = ?, updated_at = ? WHERE id = ?
-  `).run(updatedSummary, new Date().toISOString(), appointmentId);
+  await query(
+    `UPDATE appointments SET notification_status = $1, updated_at = $2 WHERE id = $3`,
+    [updatedSummary, new Date().toISOString(), appointmentId]
+  );
 
   return {
     customerWhatsApp: waResult,
@@ -465,7 +472,7 @@ export async function executeAdministratorRejectedWorkflow(
   rejectionReason: string,
   isRefundInitiated: boolean
 ) {
-  const apt = db.prepare('SELECT * FROM appointments WHERE id = ?').get(appointmentId) as any;
+  const apt = await queryOne<any>('SELECT * FROM appointments WHERE id = $1', [appointmentId]);
   if (!apt) return { error: 'Appointment not found' };
 
   const refundClause = isRefundInitiated
@@ -486,7 +493,7 @@ If you have any questions, our toll-free helpline is 1800-209-CLAIM.
 
   const waResult = await sendWhatsAppMessage(apt.customer_phone, waText);
   const waStatus = waResult.success ? 'sent' : waResult.skipped ? 'skipped' : 'failed';
-  saveNotificationLog({
+  await saveNotificationLog({
     appointmentId,
     channel: 'whatsapp',
     recipient: apt.customer_phone,
@@ -520,7 +527,7 @@ If you have any questions, our toll-free helpline is 1800-209-CLAIM.
     html: emailHtml
   });
 
-  saveNotificationLog({
+  await saveNotificationLog({
     appointmentId,
     channel: 'email',
     recipient: apt.customer_email,
@@ -533,9 +540,10 @@ If you have any questions, our toll-free helpline is 1800-209-CLAIM.
   });
 
   const updatedSummary = `rejection_notified (wa:${waStatus}, email:${emailResult.success ? 'sent' : 'failed'})`;
-  db.prepare(`
-    UPDATE appointments SET notification_status = ?, updated_at = ? WHERE id = ?
-  `).run(updatedSummary, new Date().toISOString(), appointmentId);
+  await query(
+    `UPDATE appointments SET notification_status = $1, updated_at = $2 WHERE id = $3`,
+    [updatedSummary, new Date().toISOString(), appointmentId]
+  );
 
   return {
     whatsapp: waResult,
@@ -545,12 +553,12 @@ If you have any questions, our toll-free helpline is 1800-209-CLAIM.
 
 // ================= NOTIFICATION RETRY HANDLER =================
 export async function retryNotification(notificationId: string) {
-  const notif = db.prepare('SELECT * FROM notifications WHERE id = ?').get(notificationId) as any;
+  const notif = await queryOne<any>('SELECT * FROM notifications WHERE id = $1', [notificationId]);
   if (!notif) {
     throw new Error('Notification record not found');
   }
 
-  const apt = db.prepare('SELECT * FROM appointments WHERE id = ?').get(notif.appointment_id) as any;
+  const apt = await queryOne<any>('SELECT * FROM appointments WHERE id = $1', [notif.appointment_id]);
   if (!apt) {
     throw new Error('Associated appointment not found');
   }
@@ -575,33 +583,35 @@ export async function retryNotification(notificationId: string) {
     serviceResponse = res.response || null;
     if (res.skipped) {
       const now = new Date().toISOString();
-      db.prepare(`
-        UPDATE notifications
-        SET status = 'skipped', error_details = ?, attempts = attempts + 1, updated_at = ?
-        WHERE id = ?
-      `).run(errorDetails, now, notificationId);
-      return db.prepare('SELECT * FROM notifications WHERE id = ?').get(notificationId);
+      await query(
+        `UPDATE notifications
+         SET status = 'skipped', error_details = $1, attempts = attempts + 1, updated_at = $2
+         WHERE id = $3`,
+        [errorDetails, now, notificationId]
+      );
+      return await queryOne('SELECT * FROM notifications WHERE id = $1', [notificationId]);
     }
   }
 
   const newStatus = success ? 'sent' : 'failed';
   const now = new Date().toISOString();
 
-  db.prepare(`
-    UPDATE notifications
-    SET status = ?,
-        service_response = ?,
-        error_details = ?,
-        attempts = attempts + 1,
-        updated_at = ?
-    WHERE id = ?
-  `).run(
-    newStatus,
-    serviceResponse ? JSON.stringify(serviceResponse) : null,
-    errorDetails,
-    now,
-    notificationId
+  await query(
+    `UPDATE notifications
+     SET status = $1,
+         service_response = $2,
+         error_details = $3,
+         attempts = attempts + 1,
+         updated_at = $4
+     WHERE id = $5`,
+    [
+      newStatus,
+      serviceResponse ? JSON.stringify(serviceResponse) : null,
+      errorDetails,
+      now,
+      notificationId
+    ]
   );
 
-  return db.prepare('SELECT * FROM notifications WHERE id = ?').get(notificationId);
+  return await queryOne('SELECT * FROM notifications WHERE id = $1', [notificationId]);
 }
