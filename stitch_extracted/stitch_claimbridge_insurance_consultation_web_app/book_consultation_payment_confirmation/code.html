@@ -1,0 +1,459 @@
+<!DOCTYPE html><html lang="en" style=""><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_blank" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "surface": "#f5fbf6", "primary-fixed": "#bceddd", "on-primary-fixed-variant": "#204f43", "outline": "#717975", "primary-fixed-dim": "#a0d0c1", "on-background": "#171d1a", "on-error-container": "#93000a", "secondary-container": "#ff8843", "on-primary-container": "#82b1a2", "surface-container-low": "#eff5f0", "surface-container": "#e9efea", "error-container": "#ffdad6", "on-tertiary-fixed": "#141d1b", "background": "#f5fbf6", "on-surface": "#171d1a", "on-primary": "#ffffff", "on-secondary-fixed": "#341100", "inverse-surface": "#2c322f", "surface-bright": "#f5fbf6", "secondary-fixed": "#ffdbcb", "primary": "#002d24", "surface-container-lowest": "#ffffff", "secondary-fixed-dim": "#ffb690", "on-error": "#ffffff", "on-secondary-container": "#692b00", "outline-variant": "#c0c8c4", "inverse-primary": "#a0d0c1", "surface-dim": "#d5dbd6", "on-tertiary": "#ffffff", "surface-container-highest": "#dee4df", "on-tertiary-container": "#9fa9a5", "tertiary-fixed": "#dbe5e1", "primary-container": "#144439", "on-tertiary-fixed-variant": "#3f4946", "on-secondary": "#ffffff", "inverse-on-surface": "#ecf2ed", "error": "#ba1a1a", "surface-variant": "#dee4df", "tertiary": "#1f2826", "surface-container-high": "#e4eae5", "surface-tint": "#39675a", "on-surface-variant": "#404945", "on-primary-fixed": "#002019", "on-secondary-fixed-variant": "#783100", "tertiary-container": "#353e3c", "tertiary-fixed-dim": "#bfc9c5", "secondary": "#9e4300" }, borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, spacing: { "gutter-mobile": "1rem", "space-xs": "0.25rem", "space-lg": "1.5rem", "margin-mobile": "1rem", "gutter": "1.5rem", "space-sm": "0.5rem", "space-xl": "2.5rem", "margin": "2rem", "space-md": "1rem" }, fontFamily: { "headline-lg": [ "Plus Jakarta Sans" ], "headline-xl-mobile": [ "Plus Jakarta Sans" ], "headline-md": [ "Plus Jakarta Sans" ], "headline-lg-mobile": [ "Plus Jakarta Sans" ], "body-md-medium": [ "Inter" ], "headline-sm": [ "Plus Jakarta Sans" ], "caption": [ "Inter" ], "label-sm": [ "Inter" ], "label-lg": [ "Inter" ], "body-md": [ "Inter" ], "label-md": [ "Inter" ], "body-lg": [ "Inter" ], "headline-xl": [ "Plus Jakarta Sans" ] }, fontSize: { "headline-lg": [ "32px", { "lineHeight": "40px", "letterSpacing": "-0.015em", "fontWeight": "700" } ], "headline-xl-mobile": [ "30px", { "lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "700" } ], "headline-md": [ "24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" } ], "headline-lg-mobile": [ "24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700" } ], "body-md-medium": [ "16px", { "lineHeight": "24px", "fontWeight": "500" } ], "headline-sm": [ "20px", { "lineHeight": "28px", "fontWeight": "600" } ], "caption": [ "13px", { "lineHeight": "18px", "fontWeight": "400" } ], "label-sm": [ "12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" } ], "label-lg": [ "16px", { "lineHeight": "24px", "fontWeight": "600" } ], "body-md": [ "16px", { "lineHeight": "24px", "fontWeight": "400" } ], "label-md": [ "14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" } ], "body-lg": [ "18px", { "lineHeight": "28px", "fontWeight": "400" } ], "headline-xl": [ "40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" } ] } } } };</script></head><body class="bg-surface font-body-md text-body-md text-on-surface min-h-screen"><main class="w-full min-h-screen flex items-center justify-center p-gutter-mobile md:p-gutter bg-surface"><div class="flex flex-col w-full max-w-[1240px] mx-auto py-space-md md:py-space-xl">
+<!-- STEPPER PROGRESS HEADER WITH BIMA DOST BRANDING -->
+<div class="w-full bg-surface-container-low rounded-xl p-space-md md:p-space-lg shadow-sm mb-space-lg border border-outline-variant/40">
+<div class="flex flex-col md:flex-row md:items-center md:justify-between gap-space-md pb-space-md border-b border-surface-container-high/80">
+<div class="flex items-center gap- space-md">
+<div class="flex items-center gap-3">
+<img alt="Bima Dost Logo" class="h-16 md:h-20 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDt2MlTqNWBCjEnrYeX7WBIeUEigs_2Bsvl6G-BS8lsowumcseZQld68BmhVDicEv0EvXhz2aQ3ga2Sy9JEJDhm5kCp2WkTVrZZ_B3xCRbvbhcy4VP8pWPKn2IZ1ia8jfcIyRmcv9mM-lPDNaBk6Mnaeze6dKp7S-RbE-lWv0f_KroXHL8x1X8D_tYFhyGSdXY9aHJsknkgP1KDRg_hA5Q5sUefv8I6jLtOkuVHqEYaCRYPhhlcsAZ-">
+<div class="h-12 w-px bg-outline-variant/60 hidden sm:block"></div>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md text-primary mt-0.5 leading-tight">Bima Dost - Consultation Checkout &amp; Confirmation</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant font-medium">Verified Insurance Friend • Instant IRDAI Compliant Grievance Redressal</p>
+</div>
+</div>
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-md text-label-md shrink-0 bg-surface-container-lowest px-3 py-1.5 rounded-lg border border-outline-variant/30">
+<span class="material-symbols-outlined text-surface-tint text-xl" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span class="">IRDAI Compliant Advisory</span>
+</div>
+</div>
+<!-- Stepper Pipeline -->
+<div class="grid grid-cols-3 gap-space-xs md:gap-space-md pt-space-md">
+<!-- Step 1 Completed -->
+<div class="flex items-center gap-space-xs md:gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<div class="min-w-0">
+<p class="font-label-sm text-label-sm text-on-surface-variant">Step 1</p>
+<p class="font-label-md text-label-md text-on-surface font-semibold truncate">Date &amp; Time</p>
+</div>
+</div>
+<!-- Step 2 Completed -->
+<div class="flex items-center gap-space-xs md:gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<div class="min-w-0">
+<p class="font-label-sm text-label-sm text-on-surface-variant">Step 2</p>
+<p class="font-label-md text-label-md text-on-surface font-semibold truncate">Grievance Details</p>
+</div>
+</div>
+<!-- Step 3 Active -->
+<div class="flex items-center gap-space-xs md:gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-bold text-sm shrink-0 shadow-sm">
+          3
+        </div>
+<div class="min-w-0">
+<p class="font-label-sm text-label-sm text-secondary font-semibold">Step 3 (Active)</p>
+<p class="font-label-md text-label-md text-primary font-bold truncate">Review &amp; Pay</p>
+</div>
+</div>
+</div>
+</div>
+<!-- MAIN CHECKOUT CONTENT: 7:5 ASYMMETRIC GRID -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- LEFT COLUMN: Order Review, Breakdown, Payment Gateway (Col 7) -->
+<div class="lg:col-span-7 flex flex-col gap-space-lg">
+<!-- Section Title & Reassurance Ribbon -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between flex-wrap gap-2">
+<h2 class="font-headline-sm text-headline-sm text-primary">Review appointment and pay</h2>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 bg-surface-container text-on-surface-variant rounded-full text-caption font-caption font-medium">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+            Slot reserved for 09:42 mins
+          </span>
+</div>
+<!-- Review Summary Card -->
+<div class="bg-surface-container-low rounded-lg p-space-md flex flex-col gap-space-sm">
+<div class="flex items-start justify-between pb-space-xs">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Policyholder Details</span>
+<p class="font-body-md-medium text-body-md-medium text-on-surface font-bold mt-0.5">Ramesh Patel</p>
+<p class="font-caption text-caption text-on-surface-variant">+91 98765 43210 • ramesh.patel92@gmail.com</p>
+</div>
+<button class="px-3 py-1.5 bg-surface-container-lowest text-primary rounded font-label-sm text-label-sm font-semibold hover:bg-surface-container transition-colors shadow-sm" type="button">
+              Edit Details
+            </button>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-xs pt-space-xs bg-surface-container-lowest p-space-sm rounded">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Selected Consultation Language</p>
+<p class="font-body-md-medium text-body-md-medium text-on-surface font-medium">हिंदी (Hindi)</p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Claim Grievance Category</p>
+<p class="font-body-md-medium text-body-md-medium text-error font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-base">report</span>
+                Claim Rejected by Insurer
+              </p>
+</div>
+</div>
+<div class="pt-space-xs flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container text-xl">event_available</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-semibold">Wednesday, 23 Oct 2024 at 11:15 AM IST</p>
+<p class="font-caption text-caption text-on-surface-variant">Scheduled Duration: 30 minutes via Direct Private Call</p>
+</div>
+</div>
+</div>
+<!-- Specialist Snapshot -->
+<div class="mt-space-xs p-space-sm bg-surface-container rounded flex items-center gap-space-sm">
+<div class="relative w-12 h-12 rounded-full overflow-hidden shrink-0 bg-primary-container">
+<img class="w-full h-full object-cover" data-alt="A dignified middle-aged Indian insurance claim legal advisor in formal neutral attire looking kindly at the camera with soft warm ambient lighting in an understated professional law office" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDO0niqhIujplGmEEFfLXoLwyC8u4pw9YeJCyFilFCoAekBu9o025gA2dHA9OQWePamyIJ_b9k7uIF3-6iiGHOehfX1IQVGj9VKVd-Z4mwJHZHBv_BjR5zjOdF7YtvlWW0ptC11B8Jm1JFBkFwW1D1hG4U3Ehd4uSZ0YpDDyJcoY0VK8wlNyQwahMRmPdZfjhCc9r5CYkWqp7ADp2ajMd9mQb4OkBPr7mfibrEpICc">
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5">
+<p class="font-label-md text-label-md text-on-surface font-bold">Rajesh Sharma</p>
+<span class="material-symbols-outlined text-surface-tint text-base" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<p class="font-caption text-caption text-on-surface-variant truncate">Former Ombudsman Legal Officer • 14 yrs Insurance Claims Experience</p>
+</div>
+</div>
+</div>
+<!-- Transparent Price Breakdown -->
+<div class="bg-surface-container-lowest rounded-lg p-space-md flex flex-col gap-space-xs">
+<p class="font-label-md text-label-md text-on-surface font-semibold">Tariff &amp; Statutory Taxation Breakdown</p>
+<div class="flex justify-between items-center text-on-surface-variant font-body-md text-body-md pt-space-xs">
+<span class="">Senior Claim Advocate Fee (30 mins session)</span>
+<span class="text-on-surface font-medium">₹422.88</span>
+</div>
+<div class="flex justify-between items-center text-on-surface-variant font-body-md text-body-md">
+<div class="flex items-center gap-1">
+<span class="">Statutory Goods &amp; Services Tax (18% GST)</span>
+<span class="material-symbols-outlined text-base text-outline" title="CGST 9% (₹38.06) + SGST 9% (₹38.06)">info</span>
+</div>
+<span class="text-on-surface font-medium">₹76.12</span>
+</div>
+<div class="flex justify-between items-center text-on-surface-variant font-caption text-caption">
+<span class="">Bima Dost platform convenience &amp; case docket filing</span>
+<span class="text-primary-container font-semibold uppercase tracking-wider">Free (₹0.00)</span>
+</div>
+<div class="h-px bg-surface-container-high my-space-xs"></div>
+<div class="flex justify-between items-baseline pt-space-xs">
+<div>
+<p class="font-label-lg text-label-lg text-primary font-bold">Total Amount Payable</p>
+<p class="font-caption text-caption text-on-surface-variant">Includes digital consultation docket and post-call recovery guide</p>
+</div>
+<div class="text-right">
+<p class="font-headline-lg text-headline-lg text-primary font-bold tracking-tight">₹499.00</p>
+</div>
+</div>
+<!-- Clear Reassurance: Zero Platform Commission -->
+<div class="mt-space-xs px-3 py-2.5 bg-primary-fixed/40 border border-primary-fixed-dim rounded flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container text-lg shrink-0" style="font-variation-settings: 'FILL' 1;">verified</span>
+<p class="font-caption text-caption text-on-primary-fixed-variant font-semibold">Zero Commission Guarantee: Bima Dost never takes any percentage or commission from your recovered claim settlement amount.</p>
+</div>
+</div>
+<!-- Payment Method Selection Tabs -->
+<div class="flex flex-col gap-space-sm pt-space-xs">
+<p class="font-label-lg text-label-lg text-on-surface font-semibold">Select Indian Payment Method</p>
+<div class="flex flex-col gap-space-xs" id="paymentOptions">
+<!-- Option 1: UPI (Expanded by Default) -->
+<div class="bg-surface-container-lowest rounded-lg p-space-md shadow-sm transition-all" id="upiOptionBlock">
+<label class="flex items-center justify-between cursor-pointer">
+<div class="flex items-center gap-space-sm">
+<input checked="" class="w-5 h-5 accent-primary cursor-pointer" name="payment_method" onchange="switchPaymentTab('upi')" type="radio" value="upi">
+<div>
+<span class="font-label-md text-label-md text-on-surface font-bold">UPI Instant Payment</span>
+<p class="font-caption text-caption text-on-surface-variant">Google Pay, PhonePe, Paytm, BHIM or any Banking App</p>
+</div>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="text-xs px-2 py-0.5 rounded bg-surface-container font-semibold text-on-surface-variant">Fastest</span>
+<span class="material-symbols-outlined text-primary-container">qr_code_2</span>
+</div>
+</label>
+<!-- Nested UPI Input Panel -->
+<div class="mt-space-md pt-space-md bg-surface-container-low rounded-lg p-space-md flex flex-col gap-space-md" id="upiPanel">
+<div>
+<label class="block font-label-md text-label-md text-on-surface font-semibold mb-1" for="vpaInput">Enter UPI ID / VPA</label>
+<div class="flex flex-col sm:flex-row gap-2">
+<div class="relative flex-1">
+<input class="w-full h-12 px-4 rounded bg-surface-container-lowest text-on-surface font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary shadow-inner" id="vpaInput" placeholder="e.g. mobile@upi, yourname@okhdfcbank" type="text" value="ramesh.patel@okaxis">
+<span class="absolute right-3 top-3.5 text-xs font-semibold px-2 py-0.5 bg-primary-fixed text-on-primary-fixed-variant rounded">Verified</span>
+</div>
+<button class="h-12 px-5 bg-primary-container text-on-primary font-label-md text-label-md rounded font-semibold hover:bg-primary transition-colors shrink-0" type="button">
+                      Verify &amp; Request
+                    </button>
+</div>
+<p class="font-caption text-caption text-on-surface-variant mt-1.5">A payment request prompt will appear inside your UPI application.</p>
+</div>
+<div class="flex items-center gap-space-sm">
+<div class="flex-1 h-px bg-surface-container-high"></div>
+<span class="font-caption text-caption text-on-surface-variant font-bold uppercase">OR Scan Dynamic QR</span>
+<div class="flex-1 h-px bg-surface-container-high"></div>
+</div>
+<!-- Inline Dynamic QR Presentation -->
+<div class="bg-surface-container-lowest p-space-md rounded flex flex-col sm:flex-row items-center gap-space-md">
+<div class="p-2 bg-surface-container-lowest rounded-lg shadow-sm shrink-0 text-primary">
+<!-- Crisp Native SVG QR Visualization -->
+<svg class="w-28 h-28" fill="currentColor" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+<!-- Position detection pattern Top-Left -->
+<rect fill="currentColor" height="30" rx="3" width="30" x="0" y="0"></rect>
+<rect fill="white" height="20" rx="2" width="20" x="5" y="5"></rect>
+<rect fill="currentColor" height="10" width="10" x="10" y="10"></rect>
+<!-- Position detection pattern Top-Right -->
+<rect fill="currentColor" height="30" rx="3" width="30" x="70" y="0"></rect>
+<rect fill="white" height="20" rx="2" width="20" x="75" y="5"></rect>
+<rect fill="currentColor" height="10" width="10" x="80" y="10"></rect>
+<!-- Position detection pattern Bottom-Left -->
+<rect fill="currentColor" height="30" rx="3" width="30" x="0" y="70"></rect>
+<rect fill="white" height="20" rx="2" width="20" x="5" y="75"></rect>
+<rect fill="currentColor" height="10" width="10" x="10" y="80"></rect>
+<!-- Dynamic Modules (Payload: UPI://pay?pa=bimadost@upi&am=499.00) -->
+<rect height="6" width="6" x="36" y="6"></rect>
+<rect height="6" width="6" x="46" y="6"></rect>
+<rect height="6" width="6" x="56" y="12"></rect>
+<rect height="6" width="16" x="36" y="18"></rect>
+<rect height="16" width="6" x="6" y="36"></rect>
+<rect height="6" width="6" x="18" y="42"></rect>
+<rect fill="#144439" height="28" width="28" x="36" y="36"></rect>
+<circle cx="50" cy="50" fill="white" r="8"></circle>
+<circle cx="50" cy="50" fill="#D96B27" r="5"></circle>
+<rect height="8" width="8" x="70" y="36"></rect>
+<rect height="6" width="10" x="84" y="42"></rect>
+<rect height="6" width="14" x="76" y="54"></rect>
+<rect height="14" width="8" x="36" y="70"></rect>
+<rect height="6" width="12" x="50" y="78"></rect>
+<rect height="24" width="6" x="70" y="70"></rect>
+<rect height="12" width="12" x="82" y="82"></rect>
+</svg>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-semibold">Scan with any UPI Scanner</p>
+<p class="font-caption text-caption text-on-surface-variant mt-0.5">Compatible with GPay, PhonePe, Paytm, CRED &amp; BHIM. Secure NPCI QR routing.</p>
+<span class="inline-flex items-center gap-1 mt-2 text-xs font-semibold text-secondary">
+<span class="material-symbols-outlined text-sm">alarm</span> Valid for 09:42 mins
+                    </span>
+</div>
+</div>
+</div>
+</div>
+<!-- Option 2: Cards -->
+<div class="bg-surface-container-lowest rounded-lg p-space-md shadow-sm transition-all" id="cardOptionBlock">
+<label class="flex items-center justify-between cursor-pointer">
+<div class="flex items-center gap-space-sm">
+<input class="w-5 h-5 accent-primary cursor-pointer" name="payment_method" onchange="switchPaymentTab('cards')" type="radio" value="cards">
+<div>
+<span class="font-label-md text-label-md text-on-surface font-bold">Debit / Credit Card</span>
+<p class="font-caption text-caption text-on-surface-variant">RuPay, Visa, Mastercard, American Express</p>
+</div>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant font-label-sm text-xs font-bold">
+<span class="bg-surface-container px-2 py-0.5 rounded">RuPay</span>
+<span class="bg-surface-container px-2 py-0.5 rounded">Visa</span>
+</div>
+</label>
+<!-- Hidden Tab for Card -->
+<div class="hidden mt-space-md pt-space-md bg-surface-container-low rounded-lg p-space-md flex flex-col gap-space-sm" id="cardPanel">
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface font-semibold mb-1">Card Number</label>
+<input class="w-full h-12 px-4 rounded bg-surface-container-lowest text-on-surface font-body-md text-body-md focus:outline-none" placeholder="16-digit card number" type="text">
+</div>
+<div class="grid grid-cols-2 gap-2">
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface font-semibold mb-1">Expiry MM / YY</label>
+<input class="w-full h-12 px-4 rounded bg-surface-container-lowest text-on-surface font-body-md text-body-md focus:outline-none" placeholder="MM / YY" type="text">
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface font-semibold mb-1">CVV</label>
+<input class="w-full h-12 px-4 rounded bg-surface-container-lowest text-on-surface font-body-md text-body-md focus:outline-none" maxlength="4" placeholder="3 or 4 digits" type="password">
+</div>
+</div>
+</div>
+</div>
+<!-- Option 3: Net Banking -->
+<div class="bg-surface-container-lowest rounded-lg p-space-md shadow-sm transition-all" id="netbankingOptionBlock">
+<label class="flex items-center justify-between cursor-pointer">
+<div class="flex items-center gap-space-sm">
+<input class="w-5 h-5 accent-primary cursor-pointer" name="payment_method" onchange="switchPaymentTab('netbanking')" type="radio" value="netbanking">
+<div>
+<span class="font-label-md text-label-md text-on-surface font-bold">Net Banking</span>
+<p class="font-caption text-caption text-on-surface-variant">SBI, HDFC, ICICI, PNB, Bank of Baroda, Kotak &amp; 48 others</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline">account_balance</span>
+</label>
+<!-- Hidden Tab for Netbanking -->
+<div class="hidden mt-space-md pt-space-md bg-surface-container-low rounded-lg p-space-md flex flex-col gap-space-sm" id="netbankingPanel">
+<p class="font-label-sm text-label-sm text-on-surface font-semibold">Popular Indian Banks</p>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+<button class="p-2.5 bg-surface-container-lowest text-on-surface font-label-sm text-label-sm font-semibold rounded hover:bg-surface-container text-center shadow-sm" type="button">SBI</button>
+<button class="p-2.5 bg-surface-container-lowest text-on-surface font-label-sm text-label-sm font-semibold rounded hover:bg-surface-container text-center shadow-sm" type="button">HDFC</button>
+<button class="p-2.5 bg-surface-container-lowest text-on-surface font-label-sm text-label-sm font-semibold rounded hover:bg-surface-container text-center shadow-sm" type="button">ICICI</button>
+<button class="p-2.5 bg-surface-container-lowest text-on-surface font-label-sm text-label-sm font-semibold rounded hover:bg-surface-container text-center shadow-sm" type="button">Axis Bank</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Cancellation & Reschedule Policy Notice -->
+<div class="p-space-md bg-surface-container-low rounded-lg flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-surface-tint text-xl shrink-0 mt-0.5">policy</span>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface font-semibold">Civic Protection &amp; Fair Rescheduling Guarantee</p>
+<p class="font-caption text-caption text-on-surface-variant mt-0.5 leading-relaxed">
+              Cancellation policy: Full 100% refund available up to 2 hours before the appointment. Rescheduling is completely free at any time without forfeiture of session fee.
+            </p>
+</div>
+</div>
+<!-- Main High-Contrast Action CTA -->
+<div class="flex flex-col gap-space-sm pt-space-xs">
+<button class="w-full min-h-[54px] h-[54px] bg-[#9e4300] hover:bg-[#783100] text-white rounded-lg font-label-lg text-label-lg font-bold transition-all flex items-center justify-center gap-2 shadow-lg hover:shadow-xl active:scale-[0.99] cursor-pointer" id="payButton" onclick="triggerSimulatedSuccess()" type="button">
+<span class="material-symbols-outlined text-xl">lock</span>
+<span class="">Pay ₹499 &amp; Confirm Appointment</span>
+</button>
+<div class="flex items-center justify-center gap-2 text-center text-outline">
+<span class="material-symbols-outlined text-base">shield_lock</span>
+<span class="font-caption text-caption">256-bit Encrypted &amp; RBI Compliant Payment Gateway</span>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: Post-Payment Confirmation State & Protocol Guide (Col 5) -->
+<div class="lg:col-span-5 flex flex-col gap-space-md">
+<!-- Dynamic Post-Payment Confirmation Card -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md" id="confirmationCard">
+<!-- Status Indicator Pill -->
+<div class="flex items-center justify-between pb-space-xs">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 bg-primary-fixed text-on-primary-fixed rounded-full text-caption font-semibold">
+<span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span id="badgeState" class="">Confirmed Appointment Preview</span>
+</div>
+<span class="font-caption text-caption text-outline">System Stamp: Instant</span>
+</div>
+<!-- Official Booking Reference Box with Bima Dost Docket Stamp -->
+<div class="bg-surface-container-low p-space-md rounded-lg flex flex-col gap-space-xs border border-outline-variant/30">
+<div class="flex items-center justify-between pb-1 mb-1 border-b border-surface-container-high">
+<span class="font-caption text-caption text-primary font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-surface-tint">verified</span>
+            Bima Dost Official Advisory Docket
+          </span>
+<span class="text-xs px-2 py-0.5 rounded bg-surface-container-highest font-mono text-on-surface-variant">Active</span>
+</div>
+<div class="flex justify-between items-baseline">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Docket Reference No.</span>
+<span class="font-label-md text-label-md text-primary font-bold font-mono">#BD-2024-88412</span>
+</div>
+<div class="flex justify-between items-baseline">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Session Allocation</span>
+<span class="font-caption text-caption text-on-surface font-semibold">Direct Call • Advocate Rajesh Sharma</span>
+</div>
+<div class="flex justify-between items-baseline">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Scheduled Timing</span>
+<span class="font-caption text-caption text-on-surface font-semibold">23 Oct 2024, 11:15 AM IST</span>
+</div>
+</div>
+<!-- Policyholder Protocol: "What Happens After Payment" -->
+<div>
+<h3 class="font-label-lg text-label-lg text-primary font-bold mb-space-sm flex items-center gap-1.5">
+<span class="material-symbols-outlined text-surface-tint">checklist</span>
+            What Happens After Payment
+          </h3>
+<ol class="flex flex-col gap-space-sm font-caption text-caption text-on-surface">
+<!-- Step 1 -->
+<li class="flex items-start gap-3 bg-surface-container-low/60 p-space-sm rounded">
+<span class="w-6 h-6 rounded-full bg-primary-container text-on-primary font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">1</span>
+<div>
+<p class="font-label-sm text-label-sm font-semibold text-on-surface">Instant Electronic Confirmation</p>
+<p class="text-on-surface-variant mt-0.5">You will receive an SMS and WhatsApp confirmation immediately with advisor Rajesh Sharma's direct bar council ID and contact details.</p>
+</div>
+</li>
+<!-- Step 2 -->
+<li class="flex items-start gap-3 bg-surface-container-low/60 p-space-sm rounded">
+<span class="w-6 h-6 rounded-full bg-primary-container text-on-primary font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">2</span>
+<div>
+<p class="font-label-sm text-label-sm font-semibold text-on-surface">Prepare Case Documents</p>
+<p class="text-on-surface-variant mt-0.5">Keep your claim rejection letter, policy bond or hospital discharge summary handy so the advisor can inspect the clause grounds.</p>
+</div>
+</li>
+<!-- Step 3 -->
+<li class="flex items-start gap-3 bg-surface-container-low/60 p-space-sm rounded">
+<span class="w-6 h-6 rounded-full bg-primary-container text-on-primary font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">3</span>
+<div>
+<p class="font-label-sm text-label-sm font-semibold text-on-surface">Direct Call from Advocate</p>
+<p class="text-on-surface-variant mt-0.5">At 11:15 AM on 23 Oct, your advisor will call your mobile number directly. No complicated app download or video setup required.</p>
+</div>
+</li>
+</ol>
+</div>
+<!-- Post-Confirmation Actions -->
+<div class="flex flex-col gap-2 pt-space-xs">
+<button class="w-full h-11 bg-surface-container text-primary rounded font-label-md text-label-md font-semibold hover:bg-surface-container-high transition-colors flex items-center justify-center gap-2" type="button">
+<span class="material-symbols-outlined text-lg">calendar_month</span>
+<span class="">Add to Google Calendar / Outlook</span>
+</button>
+<button class="w-full h-11 bg-surface-container text-primary rounded font-label-md text-label-md font-semibold hover:bg-surface-container-high transition-colors flex items-center justify-center gap-2" type="button">
+<span class="material-symbols-outlined text-lg">download</span>
+<span class="">Download Appointment Receipt (PDF)</span>
+</button>
+</div>
+<!-- Toll-Free Ombudsman Support Line -->
+<div class="mt-space-xs p-space-sm bg-secondary-fixed/40 rounded flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">support_agent</span>
+<div>
+<p class="font-label-sm text-label-sm text-on-secondary-fixed font-bold">Need help or want to reschedule?</p>
+<p class="font-caption text-caption text-on-secondary-fixed-variant">Call toll-free 1800-209-CLAIM (24x7 Helpline)</p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm font-bold text-secondary cursor-pointer hover:underline">Call Free</span>
+</div>
+</div>
+<!-- Trust Stamp & Ombudsman Authority Seal -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex items-center gap-space-md shadow-sm border border-outline-variant/30">
+<div class="w-12 h-12 rounded-lg bg-surface-container-lowest flex items-center justify-center text-primary-container shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-bold">Statutory Claim Governance Seal</p>
+<p class="font-caption text-caption text-on-surface-variant">Consultations governed under Consumer Protection (E-Commerce) Rules and Insurance Ombudsman Regulations 2017.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Interactive JavaScript logic for Payment Switch and Instant Booking Simulation -->
+<script>
+    function switchPaymentTab(tab) {
+      const upi = document.getElementById('upiPanel');
+      const cards = document.getElementById('cardPanel');
+      const nb = document.getElementById('netbankingPanel');
+
+      if (tab === 'upi') {
+        upi.classList.remove('hidden');
+        cards.classList.add('hidden');
+        nb.classList.add('hidden');
+      } else if (tab === 'cards') {
+        upi.classList.add('hidden');
+        cards.classList.remove('hidden');
+        nb.classList.add('hidden');
+      } else if (tab === 'netbanking') {
+        upi.classList.add('hidden');
+        cards.classList.add('hidden');
+        nb.classList.remove('hidden');
+      }
+    }
+
+    function triggerSimulatedSuccess() {
+      const payBtn = document.getElementById('payButton');
+      const badge = document.getElementById('badgeState');
+      const card = document.getElementById('confirmationCard');
+
+      payBtn.innerHTML = '<span class="material-symbols-outlined animate-spin text-xl">progress_activity</span> Processing Bank Gateway...';
+      payBtn.disabled = true;
+
+      setTimeout(() => {
+        payBtn.innerHTML = '<span class="material-symbols-outlined text-xl">done_all</span> Payment Confirmed (₹499.00)';
+        payBtn.className = 'w-full min-h-[54px] h-[54px] bg-primary text-on-primary rounded-lg font-label-lg text-label-lg font-bold flex items-center justify-center gap-2 cursor-default';
+        badge.innerText = 'Appointment Officially Confirmed';
+        badge.parentElement.className = 'inline-flex items-center gap-1.5 px-3 py-1 bg-primary text-on-primary rounded-full text-caption font-semibold shadow-sm';
+        card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 1100);
+    }
+  </script>
+</div></main>
+
+</body></html>

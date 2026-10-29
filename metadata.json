@@ -1,0 +1,6 @@
+{
+  "name": "ClaimBridge - Bima Dost Insurance Consultation",
+  "description": "Verified insurance consultation platform connecting policyholders with ex-claims officers and legal advocates for stuck, delayed, or rejected insurance claims.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

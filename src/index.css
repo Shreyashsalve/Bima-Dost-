@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", sans-serif;
+  --font-headline: "Plus Jakarta Sans", sans-serif;
+  --color-primary: #144439;
+  --color-primary-dark: #002d24;
+  --color-primary-light: #e8f2ee;
+  --color-primary-container: #144439;
+  --color-on-primary: #ffffff;
+  --color-secondary: #D96B27;
+  --color-secondary-hover: #c25615;
+  --color-on-secondary: #ffffff;
+  --color-surface: #f5fbf6;
+  --color-surface-low: #eff5f0;
+  --color-surface-container: #e9efea;
+  --color-surface-high: #e4eae5;
+  --color-surface-lowest: #ffffff;
+  --color-ink: #171d1a;
+  --color-ink-muted: #404945;
+  --color-border-stone: #E2DCD3;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-surface);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, .font-headline {
+  font-family: var(--font-headline);
+}
+
+/* Material symbols font helper */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.material-symbols-outlined.fill-1 {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
